@@ -1,52 +1,14 @@
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const sidebar = document.getElementById('sidebar');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                sidebar.classList.toggle('hidden');
-            });
-            
-            // Sidebar dropdown menus
-            const dropdownToggles = document.querySelectorAll('.sidebar-dropdown-toggle');
-            
-            dropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const dropdownMenu = this.nextElementSibling;
-                    
-                    // Close all other dropdowns except this one
-                    document.querySelectorAll('.sidebar-dropdown-menu').forEach(menu => {
-                        if (menu !== dropdownMenu) {
-                            menu.classList.add('hidden');
-                        }
-                    });
-                    
-                    // Toggle this dropdown
-                    dropdownMenu.classList.toggle('hidden');
-                });
-            });
-            
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function() {
-                document.querySelectorAll('.sidebar-dropdown-menu').forEach(menu => {
-                    menu.classList.add('hidden');
-                });
-            });
-            
-            // User dropdown menu
-            const userMenuButton = document.getElementById('user-menu-button');
-            const userMenu = document.getElementById('user-menu');
-            
-            userMenuButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                userMenu.classList.toggle('hidden');
-            });
-            
-            // Close user menu when clicking outside
-            document.addEventListener('click', function() {
-                userMenu.classList.add('hidden');
-            });
-        });
-    </script>
+<!-- Vendor JS Files -->
+<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+<script src="{{ asset('assets/vendor/typed.js/typed.umd.js') }}"></script>
+<script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+<script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+<!-- Main JS File -->
+<script src="{{ asset('assets/js/main.js') }}"></script>
