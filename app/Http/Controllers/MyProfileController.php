@@ -70,9 +70,7 @@ class MyProfileController extends Controller
         $avatarPath = null;
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
-
             $filename = time() . '_' . $user->id . '.' . $avatar->getClientOriginalExtension();
-
             $avatarPath = $avatar->storeAs('avatars', $filename, 'public');
         }
 

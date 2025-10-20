@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class EducationController extends Controller
 {
@@ -35,11 +38,25 @@ class EducationController extends Controller
         return redirect()->route('profile')->with('success', 'Education qualification added successfully.');
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, Education $education)
     {
-        $user = auth()->user();
-        $profile = $user->profile;
+        return view('home.pages.education.edit')->with([
+            'education' => $education,
+        ]);
+    }
 
-        return view('home.pages.education.edit')->with('profile', $profile);
+    public function update(Request $request, Education $education)
+    {
+        $validated_data = $request->validate([
+            'degree' => 'required|string|max:255',
+            'institute' => 'required|string|max:255',
+            'grade' => 'required|string|max:15',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+        ]);
+
+        $education->update($validated_data);
+
+        return redirect()->route('profile')->with('success', 'Education qualification Update successfully.');
     }
 }

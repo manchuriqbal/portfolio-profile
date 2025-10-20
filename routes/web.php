@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyProfileController;
+use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::middleware('auth')->group(function ()
 {
-    Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::get('/profile', [MyProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/create', [MyProfileController::class, 'createProfile'])->name('profile.create');
     Route::post('/profile', [MyProfileController::class, 'storeProfile'])->name('profile.store');
@@ -17,7 +19,13 @@ Route::middleware('auth')->group(function ()
 
     Route::get('/education/create', [EducationController::class, 'create'])->name('education.create');
     Route::post('/education', [EducationController::class, 'store'])->name('education.store');
-    Route::get('/education/edit', [EducationController::class, 'edit'])->name('education.edit');
+    Route::get('/education/{education}/edit/', [EducationController::class, 'edit'])->name('education.edit');
+    Route::patch('/education/{education}/update', [EducationController::class, 'update'])->name('education.update');
+
+    Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+    Route::get('/portfolio/{profile}', [PortfolioController::class, 'show'])->name('portfolio.show');
+
+    Route::post('comments/', [CommentController::class, 'store'])->name('comments.store');
 });
 
 // Route::get('/', function () {

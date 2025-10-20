@@ -1,6 +1,6 @@
 @extends('home.layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'Portfolios')
 
 @section('content')
         <!-- About Section -->
@@ -33,8 +33,8 @@
 
             <!-- Image Column -->
             <div class="col-lg-4 text-center">
-            @if($profile->avatar)
-                <img src="{{ asset('storage/' . $profile->avatar) }}" class="img-fluid rounded-circle" alt="Profile Avatar" style="width: 250px; height: 250px; object-fit: cover;">
+            @if($portfolio->avatar)
+                <img src="{{ asset('storage/' . $portfolio->avatar) }}" class="img-fluid rounded-circle" alt="Profile Avatar" style="width: 250px; height: 250px; object-fit: cover;">
             @else
                 <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
             @endif
@@ -44,23 +44,23 @@
         <!-- Content Column -->
         <div class="col-lg-8 content d-flex flex-column justify-content-center">
         <div class="d-flex justify-content-between align-items-center">
-            <h2 class="mt-4">{{ $profile->user->name }}</h2>
-            <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-secondary">Edit</a>
+            <h2 class="mt-4">{{ $portfolio->user->name }}</h2>
+
         </div>
 
         <div class="row w-100 mt-3">
             <div class="col-lg-6">
             <ul class="list-unstyled">
-                <li><i class="bi bi-chevron-right"></i> <strong>Gender:</strong> <span>{{ $profile->gender }}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ $profile->age }}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Hobbies:</strong> <span>{{ $profile->hobbies }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Gender:</strong> <span>{{ $portfolio->gender }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ $portfolio->age }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Hobbies:</strong> <span>{{ $portfolio->hobbies }}</span></li>
             </ul>
             </div>
             <div class="col-lg-6">
             <ul class="list-unstyled">
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{ $profile->user->email }}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{ $profile->phone }}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{ $profile->city }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{ $portfolio->user->email }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{ $portfolio->phone }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{ $portfolio->city }}</span></li>
             </ul>
             </div>
         </div>
@@ -84,13 +84,10 @@
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-            <!-- Add Button -->
-            <div class="d-flex justify-content-end mb-3">
-                <a href="{{ route('education.create') }}" class="btn btn-success">Add Education</a>
-            </div>
-            @if ($educations->isEmpty())
+
+            @if ($portfolio->educations->isEmpty())
             <div class="alert alert-info text-center" role="alert">
-                No education records found. Please add your education details.
+                No education records found.
             </div>
             @else
             <div class="table-responsive">
@@ -102,20 +99,18 @@
                     <th>Grade</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Action</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($educations as $education)
+                    @foreach ($portfolio->educations as $education)
                         <tr>
                             <td>{{ $education->degree }}</td>
                             <td>{{ $education->institute }}</td>
                             <td>{{ $education->grade }}</td>
                             <td>{{ $education->start_date->format('d M Y') }}</td>
                             <td>{{ $education->end_date->format('d M Y') }}</td>
-                            <td class="text-center">
-                                <a href="{{ route('education.edit', $education->id) }}" class="btn btn-sm btn-secondary">Edit</a>
-                            </td>
+
                         </tr>
                     @endforeach
 
@@ -126,13 +121,7 @@
             </div>
             @endif
 
-            <div class="d-flex justify-content-end mb-3 mt-5">
-                <form action="{{ route('profile.delete') }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete Profile</button>
-                </form>
-           </div>
+
         </div>
 
 
@@ -140,7 +129,7 @@
 
 
 <!-- Comment Section -->
-<x-comment :portfolio="$profile" />
+<x-comment :portfolio="$portfolio" />
 <!-- /Comment Section -->
 
 

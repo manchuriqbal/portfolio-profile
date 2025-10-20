@@ -54,10 +54,26 @@ cp .env.example .env
 # Generate application key
 php artisan key:generate
 
-# Configure your database in .env (use SQLite/MySQL)
+# Configure your database in .env (use SQLite)
 
 # Run migrations and seed data
 php artisan migrate:fresh --seed
 
 # Start the development server
 php artisan serve
+
+## Quick Start / Usage
+
+1. First register a new account or log in with an existing user.
+2. If the logged-in user does not have a profile yet, create one via the Profile → Create Profile flow.
+3. After creating a profile the UI will show "Explore" and "Profile" sections:
+    - Explore: Browse other users' portfolios.
+    - Profile: View and edit your own profile details, education, avatar and hobbies.
+4. Visit any user's portfolio from the Explore page to view their details.
+5. Leave comments (text or image) on other users' portfolios.
+6. To remove your account and all related data use the Delete Profile option on your Profile page.
+
+Tips:
+- Use the seeded accounts (if provided) to quickly test explore/comment flows.
+- Edit education entries from the Profile page to add or update degrees and dates.
+- Ensure image uploads meet the configured size/type rules in .env and validation.

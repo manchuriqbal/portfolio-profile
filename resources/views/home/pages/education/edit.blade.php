@@ -34,12 +34,12 @@
                             </div>
                         @endif
 
-                        <form action="" method="POST" >
+                        <form action="{{ route('education.update', $education->id) }}" method="POST" >
                             @csrf
-                            @method('PUT')
+                            @method('patch')
 
                             {{-- profile id  --}}
-                            <input type="hidden" name="profile_id" value="">
+                            <input type="hidden" name="profile_id" value="{{ old('profile_id', $education->profile_id ?? '') }}">
 
                             <div class="row">
                                 <!-- degree -->
@@ -48,8 +48,8 @@
                                         <i class="bi bi-person"></i> Degree <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" class="form-control @error('degree') is-invalid @enderror"
-                                           id="degree" name="degree" value=""
-                                           placeholder="e.g., Bachelor of Science" required>
+                                           id="degree" name="degree" value="{{ old('degree', $education->degree) }}"
+                                           placeholder="e.g., Bachelor of Science" required >
                                     @error('degree')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -63,7 +63,7 @@
                                         <i class="bi bi-building"></i> Institute <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" class="form-control @error('institute') is-invalid @enderror"
-                                           id="institute" name="institute" value=""
+                                           id="institute" name="institute" value="{{ old('institute', $education->institute) }}"
                                            placeholder="e.g., Harvard University" required>
                                     @error('institute')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -76,7 +76,7 @@
                                         <i class="bi bi-star"></i> Grade <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" class="form-control @error('grade') is-invalid @enderror"
-                                           id="grade" name="grade" value=""
+                                           id="grade" name="grade" value="{{ old('grade', $education->grade ) }}"
                                            placeholder="e.g., A+" required>
                                     @error('grade')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -89,7 +89,7 @@
                                         <i class="bi bi-calendar"></i> Start Date <span class="text-danger">*</span>
                                     </label>
                                     <input type="date" class="form-control @error('start_date') is-invalid @enderror"
-                                           id="start_date" name="start_date" value=""
+                                           id="start_date" name="start_date" value="{{ old('start_date', $education->start_date->format('Y-m-d')) }}"
                                            required>
                                     @error('start_date')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -102,7 +102,7 @@
                                         <i class="bi bi-calendar"></i> End Date
                                     </label>
                                     <input type="date" class="form-control @error('end_date') is-invalid @enderror"
-                                           id="end_date" name="end_date" value="">
+                                           id="end_date" name="end_date" value="{{ old('end_date', $education->end_date->format('Y-m-d')) }}">
                                     @error('end_date')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

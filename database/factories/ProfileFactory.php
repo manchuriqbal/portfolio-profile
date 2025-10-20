@@ -24,7 +24,7 @@ class ProfileFactory extends Factory
         ];
         return [
             'user_id' => User::factory() ?? User::factory(),
-            'avatar' => fake()->imageUrl(200, 200, 'people', true, 'Avatar'),
+            'avatar' => 'https://i.pravatar.cc/200?u=' . fake()->unique()->uuid(),
             'gender' => fake()->randomElement(['male', 'female']),
             'hobbies' => fake()->randomElement($hobbies),
             'age' => fake()->numberBetween(18, 60),
