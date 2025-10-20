@@ -62,6 +62,7 @@ php artisan migrate:fresh --seed
 # Start the development server
 php artisan serve
 
+```bash
 ## Quick Start / Usage
 
 1. First register a new account or log in with an existing user.
