@@ -35,7 +35,7 @@ Users can delete their profile and all related data if they wish.
 - Eloquent ORM
 - Factory & Seeder for dummy data
 
-##  Installation Guide
+## Installation Guide
 Follow these steps to run the project locally:
 
 ```bash
@@ -54,22 +54,22 @@ cp .env.example .env
 # Generate application key
 php artisan key:generate
 
-# Configure your database in .env (use SQLite)
+# Configure your database in .env (use SQLite or MySQL)
 
 # Run migrations and seed data
 php artisan migrate:fresh --seed
 
 # Start the development server
 php artisan serve
+```
 
-```bash
 ## Quick Start / Usage
 
-1. First register a new account or log in with an existing user.
-2. If the logged-in user does not have a profile yet, create one via the Profile → Create Profile flow.
+1. Register a new account or log in with an existing user.
+2. If the logged-in user does not have a profile yet, create one via Profile → Create Profile.
 3. After creating a profile the UI will show "Explore" and "Profile" sections:
     - Explore: Browse other users' portfolios.
-    - Profile: View and edit your own profile details, education, avatar and hobbies.
+    - Profile: View and edit your own profile details, education, avatar, and hobbies.
 4. Visit any user's portfolio from the Explore page to view their details.
 5. Leave comments (text or image) on other users' portfolios.
 6. To remove your account and all related data use the Delete Profile option on your Profile page.
